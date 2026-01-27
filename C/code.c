@@ -2,17 +2,19 @@
 #include <stdio.h>
 #include <math.h>
 
+
 int Arr();
 int ArrSmallest();
 int ArrLargest();
-// int ChangeArr();
+int RefArr(int arr[], int size);
 int LinearSearch();
 int RevArr();
+int ProductAndSumArr();
+int SwapMaxMin();
 
 int main()
 {
-    int srch = LinearSearch();
-    printf("TARGET INDEX:[%d]", srch);
+    SwapMaxMin();
     return 0;
 }
 
@@ -24,7 +26,7 @@ int Arr()
     printf("ARRAY SIZE: %d\n", sz);
 
     // input array el
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < sz; i++)
     {
         printf("ELEMENT[%d]: ", i + 1);
         scanf("%d", &marks[i]);
@@ -95,7 +97,7 @@ int ArrLargest()
     return 0;
 }
 
-int ChangeArr(int arr[], int size)
+int RefArr(int arr[], int size)
 {
     for (int i = 0; i < size; i++)
     {
@@ -139,14 +141,103 @@ int RevArr()
     // end point for swaping
     int end = size - 1;
 
-    // before
-
+    // logic
     while (start < end)
     {
+        // swap
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+
+        // update
+        start++;
+        end--;
     }
 
     // after
-    printf("AFTER REV: ");
+    printf("AFTER REV: \n");
+    for (int i = 0; i < size; i++)
+    {
+        printf("EL = [%d]:[%d]\n", i, arr[i]);
+    }
 
     return 0;
 }
+
+int ProductAndSumArr()
+{
+    // arr 
+    int arr[] = {10, 12, 16, 18, 20};
+
+    //size
+    int sz = sizeof(arr) / sizeof(int);
+
+    //product store
+    double product = 1;
+
+    //sum store
+    int sum = 0;
+
+    //logic apply loop
+    for(int i = 0; i < sz; i++)
+    {
+        product *= arr[i];
+        sum += arr[i];
+    }
+
+    printf("PRODUCT:[%.2f]\n", product);
+    printf("SUM:[%d]\n", sum);
+
+    return 0;
+}
+
+int SwapMaxMin()
+{
+    // arr
+    int arr[] = {5, 15, 22, 1, -15, 25};
+
+    // size
+    int sz = sizeof(arr) / sizeof(int);
+
+    // print before swap
+    printf("BEFORE SWAP:\n");
+    for (int i = 0; i < sz; i++)
+    {
+        printf("EL = [%d]:[%d]\n", i, arr[i]);
+    }
+
+    // find max
+    int maxIndex = 0;
+    for (int i = 0; i < sz; i++)
+    {
+        if (arr[i] > arr[maxIndex])
+        {
+            maxIndex = i;
+        }
+    }
+
+    // find min
+    int minIndex = 0;
+    for (int i = 0; i < sz; i++)
+    {
+        if (arr[i] < arr[minIndex])
+        {
+            minIndex = i;
+        }
+    }
+
+    // swap max and min
+    int temp = arr[maxIndex];
+    arr[maxIndex] = arr[minIndex];
+    arr[minIndex] = temp;
+
+    // print after swap
+    printf("\nAFTER SWAP:\n");
+    for (int i = 0; i < sz; i++)
+    {
+        printf("EL = [%d]:[%d]\n", i, arr[i]);
+    }
+
+    return 0;
+}
+
