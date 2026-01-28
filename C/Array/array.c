@@ -2,22 +2,45 @@
 #include <stdio.h>
 #include <math.h>
 
-
+// simple array insert from user and print elements.
 int Arr();
+
+// find smallest digit in array
 int ArrSmallest();
+
+// find largest digit in array
 int ArrLargest();
+
+// change array element from reference
 int RefArr(int arr[], int size);
+
+// linear search ex - target = 10
 int LinearSearch();
+
+// reverse of array
 int RevArr();
+
+// find product and sun of all array elements
 int ProductAndSumArr();
+
+// swap min = max && max = min
 int SwapMaxMin();
 
+// find unique element and print el
+int UniqueEl();
+
+// print intersection of two array
+int IntersectionTwoArr();
+
+// main function
 int main()
 {
-    SwapMaxMin();
+    // calling function
+    
     return 0;
 }
 
+// -- Solution of all questions -- //
 int Arr()
 {
     int sz = 5;
@@ -166,20 +189,20 @@ int RevArr()
 
 int ProductAndSumArr()
 {
-    // arr 
+    // arr
     int arr[] = {10, 12, 16, 18, 20};
 
-    //size
+    // size
     int sz = sizeof(arr) / sizeof(int);
 
-    //product store
+    // product store
     double product = 1;
 
-    //sum store
+    // sum store
     int sum = 0;
 
-    //logic apply loop
-    for(int i = 0; i < sz; i++)
+    // logic apply loop
+    for (int i = 0; i < sz; i++)
     {
         product *= arr[i];
         sum += arr[i];
@@ -241,3 +264,75 @@ int SwapMaxMin()
     return 0;
 }
 
+int UniqueEl()
+{
+    // Create a array
+    int arr[] = {8, 5, 8, 5, 1, 4};
+
+    // Cal size
+    int size = sizeof(arr) / sizeof(int);
+
+    // print unique elements
+    printf("UNIQUE ELEMENTS:\n");
+    for (int i = 0; i < size; i++)
+    {
+        int count = 0;
+        // Count how many times arr[i] appears in the array
+        for (int j = 0; j < size; j++)
+        {
+            if (arr[i] == arr[j])
+            {
+                count++;
+            }
+        }
+        // If count is 1, element is unique
+        if (count == 1)
+        {
+            printf("UNIQUE EL = [%d]\n", arr[i]);
+        }
+    }
+
+    return 0;
+}
+
+int IntersectionTwoArr()
+{
+    int arr_1[] = {1, 2, 3, 4, 5};
+    int arr_2[] = {3, 4, 5, 6, 7};
+
+    // Calculate sizes
+    int size1 = sizeof(arr_1) / sizeof(int);
+    int size2 = sizeof(arr_2) / sizeof(int);
+
+    printf("ARRAY 1: ");
+    for (int i = 0; i < size1; i++)
+    {
+        printf("[%d] ", arr_1[i]);
+    }
+    printf("\n");
+
+    printf("ARRAY 2: ");
+    for (int i = 0; i < size2; i++)
+    {
+        printf("[%d] ", arr_2[i]);
+    }
+    printf("\n");
+
+    // Find intersection
+    printf("INTERSECTION: ");
+    for (int i = 0; i < size1; i++)
+    {
+        // Check if arr_1[i] exists in arr_2
+        for (int j = 0; j < size2; j++)
+        {
+            if (arr_1[i] == arr_2[j])
+            {
+                printf("[%d] ", arr_1[i]);
+                break; // Move to next element in arr_1
+            }
+        }
+    }
+    printf("\n");
+
+    return 0;
+}
