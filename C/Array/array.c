@@ -2,41 +2,41 @@
 #include <stdio.h>
 #include <math.h>
 
-// simple array insert from user and print elements.
+// 1. simple array insert from user and print elements.
 int Arr();
 
-// find smallest digit in array
+// 2. find smallest digit in array
 int ArrSmallest();
 
-// find largest digit in array
+// 3. find largest digit in array
 int ArrLargest();
 
-// change array element from reference
+// 4. change array element from reference
 int RefArr(int arr[], int size);
 
-// linear search ex - target = 10
+// 5. linear search ex - target = 10
 int LinearSearch();
 
-// reverse of array
+// 6. reverse of array
 int RevArr();
 
-// find product and sun of all array elements
+// 7. find product and sun of all array elements
 int ProductAndSumArr();
 
-// swap min = max && max = min
+// 8. swap min = max && max = min
 int SwapMaxMin();
 
-// find unique element and print el
+// 9. find unique element and print el
 int UniqueEl();
 
-// print intersection of two array
+// 10. print intersection of two array
 int IntersectionTwoArr();
 
 // main function
 int main()
 {
     // calling function
-    
+
     return 0;
 }
 
