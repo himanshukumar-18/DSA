@@ -38,11 +38,14 @@ int ArrTranspose();
 // read and display n number using array - lab1
 int NumberArr();
 
+// sum of to array el index
+int SumArrEl();
+
 // main function
 int main()
 {
     // calling function
-    NumberArr();
+    SumArrEl();
     return 0;
 }
 
@@ -351,11 +354,11 @@ int ArrTranspose()
     // Create an inverse array
     int transpose[3][3];
 
-    //after transpose
+    // after transpose
     printf("BEFORE TRANSPOSE: \n");
-    for(int i = 0; i < 3; i++)
+    for (int i = 0; i < 3; i++)
     {
-        for(int j = 0; j <  3; j++)
+        for (int j = 0; j < 3; j++)
         {
             printf("%d ", arr[i][j]);
         }
@@ -371,7 +374,7 @@ int ArrTranspose()
         }
     }
 
-    //transpose print
+    // transpose print
     printf("Transpose El: \n");
     for (int i = 0; i < 3; i++)
     {
@@ -399,20 +402,62 @@ int NumberArr()
 
     // loop for store n numbers in array
     printf("Enter %d numbers:\n", n);
-    for(i = 0; i < n; i++)
+    for (i = 0; i < n; i++)
     {
         printf("Element[%d]: ", i + 1);
         scanf("%d", &arr[i]);
     }
 
-
     // print n number to display
     printf("ELEMENT IN ARRAY:\n");
-    for(i = 0; i < n; i++)
+    for (i = 0; i < n; i++)
     {
         printf("%d ", arr[i]);
     }
     printf("\n");
 
+    return 0;
+}
+
+int SumArrEl()
+{
+    // create array
+    int nums[] = {1, 2, 5, 7, 10};
+
+    // cal size
+    int size = sizeof(nums) / sizeof(int);
+
+    // set target
+    int target = 9;
+
+    // starting index for checking from start - 0 1 2
+    int startIndex = 0;
+
+    // ending index for checking fom end ex - 5 4 3
+    int endingIndex = size - 1;
+
+    while (startIndex < endingIndex)
+    {
+        // cal current sum
+        int currentSum = nums[startIndex] + nums[endingIndex];
+
+        // condition for check my target is complete or not
+        if (currentSum == target)
+        {
+            // if target is complete then index 1 sore in targetIndex[0] - el and index 2 is store in targetIndex[1] - el
+            printf("%d %d", startIndex, endingIndex);
+            break;  // EXIT LOOP AFTER FINDING THE PAIR
+        }
+        else if (currentSum < target)
+        {
+            // if sum is less than target, increment start index
+            startIndex++;
+        }
+        else
+        {
+            // if sum is greater than target, decrement end index
+            endingIndex--;
+        }
+    }
     return 0;
 }
