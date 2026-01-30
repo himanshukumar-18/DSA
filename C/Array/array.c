@@ -32,11 +32,17 @@ int UniqueEl();
 // 10. print intersection of two array
 int IntersectionTwoArr();
 
+// array inverse
+int ArrTranspose();
+
+// read and display n number using array - lab1
+int NumberArr();
+
 // main function
 int main()
 {
     // calling function
-
+    NumberArr();
     return 0;
 }
 
@@ -331,6 +337,80 @@ int IntersectionTwoArr()
                 break; // Move to next element in arr_1
             }
         }
+    }
+    printf("\n");
+
+    return 0;
+}
+
+int ArrTranspose()
+{
+    // Create an array
+    int arr[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+
+    // Create an inverse array
+    int transpose[3][3];
+
+    //after transpose
+    printf("BEFORE TRANSPOSE: \n");
+    for(int i = 0; i < 3; i++)
+    {
+        for(int j = 0; j <  3; j++)
+        {
+            printf("%d ", arr[i][j]);
+        }
+        printf("\n");
+    }
+
+    // logic to transpose
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            transpose[j][i] = arr[i][j];
+        }
+    }
+
+    //transpose print
+    printf("Transpose El: \n");
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            printf("%d ", transpose[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+int NumberArr()
+{
+    // variables
+    int n, i;
+
+    // number input from user
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    // create array to input n numbers
+    int arr[n];
+
+    // loop for store n numbers in array
+    printf("Enter %d numbers:\n", n);
+    for(i = 0; i < n; i++)
+    {
+        printf("Element[%d]: ", i + 1);
+        scanf("%d", &arr[i]);
+    }
+
+
+    // print n number to display
+    printf("ELEMENT IN ARRAY:\n");
+    for(i = 0; i < n; i++)
+    {
+        printf("%d ", arr[i]);
     }
     printf("\n");
 
