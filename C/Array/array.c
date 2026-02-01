@@ -41,11 +41,23 @@ int NumberArr();
 // sum of to array el index
 int SumArrEl();
 
+// count non zero element ex - sparse arrays
+int NonZero();
+
+// lower trangular matrix
+int LowerTrangular();
+
+// upper trangular matrix
+int UpperTrangular();
+
+// tri-diagonal matrix
+int TriDiagonal();
+
 // main function
 int main()
 {
     // calling function
-    SumArrEl();
+    ArrTranspose();
     return 0;
 }
 
@@ -446,7 +458,7 @@ int SumArrEl()
         {
             // if target is complete then index 1 sore in targetIndex[0] - el and index 2 is store in targetIndex[1] - el
             printf("%d %d", startIndex, endingIndex);
-            break;  // EXIT LOOP AFTER FINDING THE PAIR
+            break; // EXIT LOOP AFTER FINDING THE PAIR
         }
         else if (currentSum < target)
         {
@@ -459,5 +471,117 @@ int SumArrEl()
             endingIndex--;
         }
     }
+    return 0;
+}
+
+int NonZero()
+{
+    // create  3 * 3 matrix
+    int mat[3][3] = {
+        {0, 0, 10},
+        {0, 0, 0},
+        {0, 5, 0}};
+
+    // count non zero el
+    int count = 0;
+
+    // loop for checking one by one
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (mat[i][j] != 0)
+            {
+                // if detect any non zero el count + 1
+                count++;
+            }
+        }
+    }
+
+    printf("non-zero el:[%d]", count);
+
+    // time O(n2)
+
+    return 0;
+}
+
+int LowerTrangular()
+{
+    // create matrix 3 * 3
+    int mat[3][3] = {
+        {1, 0, 0},
+        {8, 5, 0},
+        {6, 4, 4}};
+
+    int i, j;
+
+    printf("Lower trangular matrix: \n");
+    for (i = 0; i < 3; i++)
+    {
+        for (j = 0; j < 3; j++)
+        {
+            if (i >= j)
+            {
+                printf("%d ", mat[i][j]);
+            }
+        }
+    }
+
+    return 0;
+}
+
+int UpperTrangular()
+{
+    // create matrix 3 * 3
+    int mat[3][3] = {
+        {1, 2, 3},
+        {0, 4, 5},
+        {0, 0, 6}};
+
+    int i, j;
+
+    printf("Lower trangular matrix: \n");
+    for (i = 0; i < 3; i++)
+    {
+        for (j = 0; j < 3; j++)
+        {
+            if (i <= j)
+            {
+                printf("%d ", mat[i][j]);
+            }
+        }
+    }
+
+    return 0;
+}
+
+int TriDiagonal() 
+{
+    // size of mat
+    int n = 4;
+
+    // create matrix 4 * 4
+    int mat[4][4] = {
+        {1, 2, 0, 0}, 
+        {3, 4, 5, 0}, 
+        {0, 6, 7, 8}, 
+        {0, 0, 9, 10}
+    };
+
+    printf("Tre-diagonal matrix: \n");
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < n; j++)
+        {
+            if(i == j || i == j + 1 || i == j - 1)
+            {
+               printf("%d ", mat[i][j]);
+            } else {
+                printf("0 ");
+            }
+        }
+        printf("\n");
+    }
+
     return 0;
 }
