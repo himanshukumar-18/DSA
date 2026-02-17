@@ -79,16 +79,117 @@ int CopyArr();
 // positive and nagtive number in array
 int PosNeg();
 
+// count frequency of el in array
+int FrequencyArr();
+
+// second largest el in array
+int SecondLargest();
+
+// swap first and last el in array
+int SwapFirstLast();
+
 // main function
 int main()
 {
     // calling function
-    PosNeg();
+    SwapFirstLast();
 
     return 0;
 }
 
 // -- Solution of all questions -- //
+
+int SwapFirstLast()
+{
+    int arr[] = {5, 15, 22, 1, -15, 25};
+
+    // size cal of arr
+    int sz = sizeof(arr) / sizeof(int);
+
+    // print before swap
+    printf("BEFORE SWAP:\n");
+    for (int i = 0; i < sz; i++)
+    {
+        printf("EL = [%d]:[%d]\n", i, arr[i]);
+    }
+
+    // swap first and last el
+    int temp = arr[0];
+    arr[0] = arr[sz - 1];
+    arr[sz - 1] = temp;
+
+    // print after swap
+    printf("\nAFTER SWAP:\n");
+    for (int i = 0; i < sz; i++)
+    {
+        printf("EL = [%d]:[%d]\n", i, arr[i]);
+    }
+
+    return 0;
+}
+
+int SecondLargest()
+{
+    int arr[] = {5, 15, 22, 1, -15, 25};
+
+    // size cal of arr
+    int sz = sizeof(arr) / sizeof(int);
+
+    // set largest variable for store largest value of array el
+    int largest = 0;
+    int secondLargest = 0;
+
+    // check on by one
+    for (int i = 0; i < sz; i++)
+    {
+        // apply condition if arr el larger then largest then largest replace with el of arr;
+        if (arr[i] > largest)
+        {
+            secondLargest = largest; // Update second largest before updating largest
+            largest = arr[i];
+        }
+        else if (arr[i] > secondLargest && arr[i] != largest)
+        {
+            secondLargest = arr[i]; // Update second largest if current element is between largest and second largest
+        }
+    }
+
+    // print final smallest el in array
+    printf("SECOND LARGEST EL OF ARRAY:[%d]\n", secondLargest);
+
+    return 0;
+}
+
+int FrequencyArr()
+{
+    int arr[] = {1, 2, 3, 4, 5, 2, 3, 1};
+    int size = sizeof(arr) / sizeof(int);
+    int freq[size];
+
+    // Initialize frequency array to 0
+    for (int i = 0; i < size; i++)
+    {
+        freq[i] = 0;
+    }
+
+    // Count frequency of each element
+    for(int i = 0; i < size; i++)
+    {
+        freq[arr[i]]++;
+    }
+
+    // Print frequency of each element
+    printf("Element\tFrequency\n");
+    for (int i = 0; i < size; i++)
+    {
+        if (freq[i] > 0)
+        {
+            printf("%d\t%d\n", i, freq[i]);
+        }
+    }
+
+    return 0;
+}
 
 int ArrDeclear()
 {
