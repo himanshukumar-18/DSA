@@ -11,10 +11,13 @@ int TransposeMatrix();
 // enter given number in given location
 int InsertArr();
 
+// to delete given n number index in array
+int DeleteEl();
+
 int main()
 {
     // call here
-    InsertArr();
+    DeleteEl();
 
     return 0;
 }
@@ -92,42 +95,77 @@ int TransposeMatrix()
 
 int InsertArr()
 {
-    int arr[50], n, i, pos, num;
-
-    printf("Enter number of el: ");
-    scanf("%d", &n);
+    int arr[6], size = 5, i, pos, num; // use arr[6] to allow one extra element after insertion
 
     printf("Enter array elements: \n");
-    for(i = 0; i < n; i++)
+    for(i = 0; i < size; i++)
     {   
         printf("El[%d]: ", i + 1);
         scanf("%d", &arr[i]);
     }
 
-    printf("Enter the position to insert (1 to %d)", n + 1);
+    printf("Enter the position to insert: ");
     scanf("%d", &pos);
 
     printf("Enter the number to insert: ");
     scanf("%d", &num);
 
+    if (pos < 1 || pos > size + 1) {
+        printf("Invalid position. Must be between 1 and %d\n", size + 1);
+        return 0;
+    }
+
     // shift el
-    for(i = n; i >= pos; i--)
+    for(i = size; i >= pos; i--)
     {
         arr[i] = arr[i - 1];
     }
 
     // insert el
     arr[pos - 1] = num;
-    n++;
+    size++;
 
     printf("After inserting array: \n");
-    for(i = 0; i < n; i++)
+    for(i = 0; i < size; i++)
     {
         printf("%d ", arr[i]);
     }
 
     return 0;
 }
+
+int DeleteEl()
+{
+    int arr[5], pos, size;
+    size = sizeof(arr) / sizeof(int);
+
+    printf("Enter array elements: \n");
+    for(int i = 0; i < size; i++) {
+        printf("el %d = ", i + 1);
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Enter position to delete: ");
+    scanf("%d", &pos);
+
+    for(int i = pos; i < size - 1; i++)
+    {
+        arr[i] = arr[i + 1];
+    }
+
+    size--;
+
+    printf("After deleting arry el: \n");
+    for(int i = 0; i < size; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
+
+
+
 
 
 

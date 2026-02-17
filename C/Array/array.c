@@ -15,7 +15,7 @@ int ArrLargest();
 int RefArr(int arr[], int size);
 
 // 5. linear search ex - target = 10
-int LinearSearch();
+int Search();
 
 // 6. reverse of array
 int RevArr();
@@ -53,15 +53,198 @@ int UpperTrangular();
 // tri-diagonal matrix
 int TriDiagonal();
 
+// bubble sort adjcent compare then swap
+int BubbleSort();
+
+// Selection sort always takes same time.
+int SelectionSort();
+
+// Cards arrange करने जैसा (left side sorted)
+int InsertingSort();
+
+// -- quick sort -- //
+int partition(int a[], int low, int high);
+
+void quickShort(int a[], int low, int high);
+
+// declear and init an array of 10 integers
+int ArrDeclear();
+
+// check array el using linear search
+int LinearSearch();
+
+// copy array el one to another
+int CopyArr();
+
+// positive and nagtive number in array
+int PosNeg();
+
 // main function
 int main()
 {
     // calling function
-    ArrTranspose();
+    PosNeg();
+
     return 0;
 }
 
 // -- Solution of all questions -- //
+
+int ArrDeclear()
+{
+    int el;
+    printf("Enter total number of el: ");
+    scanf("%d", &el);
+
+    int arr[el];
+
+    // init el in array
+    printf("\nEnter all elements value in array: \n");
+    for (int i = 0; i < el; i++)
+    {
+        printf("Element %d = ", i + 1);
+        scanf("%d", &arr[i]);
+    }
+
+    // read 10 el
+    printf("\nAll elements of array:\n");
+    for (int i = 0; i < el; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+
+    // sum of all el in array
+    int sum = 0;
+    int avg = 0;
+
+    printf("\n\nSum of total el in array: ");
+    for (int i = 0; i < el; i++)
+    {
+        sum += arr[i];
+        avg = sum / el;
+    }
+    printf("%d", sum);
+    printf("\nAvg of total el: %d\n", avg);
+
+    printf("\nMaximum el in an array: ");
+    if (el > 0)
+    {
+        int max = arr[0];
+        for (int i = 1; i < el; i++)
+        {
+            if (arr[i] < max)
+            {
+                max = arr[i];
+            }
+        }
+        printf("%d\n", max);
+    }
+    else
+    {
+        printf("Array is empty\n");
+    }
+
+    printf("\nEven and odd el in array: \n");
+    for (int i = 0; i < el; i++)
+    {
+        if (arr[i] % 2 == 0)
+        {
+            printf("Even el: %d\n", arr[i]);
+        }
+        else
+        {
+            printf("Odd el: %d\n", arr[i]);
+        }
+    }
+
+    return 0;
+}
+
+int CopyArr()
+{
+    int size;
+    printf("Enter size of array: ");
+    scanf("%d", &size);
+
+    int org[size], copy[size];
+
+    printf("Enter el in orginal array: \n");
+    for (int i = 0; i < size; i++)
+    {
+        printf("el %d = ", i);
+        scanf("%d", &org[i]);
+    }
+
+    for (int j = 0; j < size; j++)
+    {
+        copy[j] = org[j];
+    }
+
+    printf("All copy el fron orginal el: \n");
+    for (int i = 0; i < size; i++)
+    {
+        printf("%d ", copy[i]);
+    }
+
+    return 0;
+}
+
+int PosNeg()
+{
+    int arr[10] = {-1, 33, -6, 54, -9, 87, 3, 24, -8, 90};
+    int countPosNum = 0;
+    int countNegNum = 0;
+
+    for (int i = 0; i < 10; i++)
+    {
+        if (arr[i] < 0)
+        {
+            countNegNum++;
+        }
+        else if (arr[i] > 0)
+        {
+            countPosNum++;
+        }
+    }
+
+    printf("Postive number = %d\n", countPosNum);
+    printf("Negative number = %d", countNegNum);
+
+    return 0;
+}
+
+int Search()
+{
+    int el;
+    printf("Enter total number of el: ");
+    scanf("%d", &el);
+
+    int arr[el];
+
+    // init el in array
+    printf("\nEnter all elements value in array: \n");
+    for (int i = 0; i < el; i++)
+    {
+        printf("Element %d = ", i);
+        scanf("%d", &arr[i]);
+    }
+
+    int target;
+    printf("\nEnter your target which el index you want: ");
+    scanf("%d", &target);
+
+    // linear search
+    for (int i = 0; i < el; i++)
+    {
+        if (arr[i] == target)
+        {
+            printf("el inx: %d", i);
+        }
+    }
+
+    return 0;
+}
+
 int Arr()
 {
     int sz = 5;
@@ -184,6 +367,13 @@ int RevArr()
     int start = 0;
     // end point for swaping
     int end = size - 1;
+
+    int rev[size];
+
+    // for(int i = size - 1, j = 0; i >= 0; i--, j++)
+    // {
+    //     rev[j] = arr[i];
+    // }
 
     // logic
     while (start < end)
@@ -555,28 +745,29 @@ int UpperTrangular()
     return 0;
 }
 
-int TriDiagonal() 
+int TriDiagonal()
 {
     // size of mat
     int n = 4;
 
     // create matrix 4 * 4
     int mat[4][4] = {
-        {1, 2, 0, 0}, 
-        {3, 4, 5, 0}, 
-        {0, 6, 7, 8}, 
-        {0, 0, 9, 10}
-    };
+        {1, 2, 0, 0},
+        {3, 4, 5, 0},
+        {0, 6, 7, 8},
+        {0, 0, 9, 10}};
 
     printf("Tre-diagonal matrix: \n");
-    for(int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
-        for(int j = 0; j < n; j++)
+        for (int j = 0; j < n; j++)
         {
-            if(i == j || i == j + 1 || i == j - 1)
+            if (i == j || i == j + 1 || i == j - 1)
             {
-               printf("%d ", mat[i][j]);
-            } else {
+                printf("%d ", mat[i][j]);
+            }
+            else
+            {
                 printf("0 ");
             }
         }
@@ -584,4 +775,118 @@ int TriDiagonal()
     }
 
     return 0;
+}
+
+int BubbleSort()
+{
+    int a[5] = {5, 1, 4, 2, 8};
+    int i, j, temp;
+
+    for (i = 0; i < 5 - 1; i++)
+    {
+        for (j = 0; j < 5 - 1; j++)
+        {
+            if (a[j] > a[j + 1])
+            {
+                temp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = temp;
+            }
+        }
+    }
+
+    printf("Bubble sort: \n");
+    for (i = 0; i < 5; i++)
+    {
+        printf("%d ", a[i]);
+    }
+
+    return 0;
+}
+
+int SelectionSort()
+{
+    int a[5] = {64, 25, 12, 22, 11};
+    int i, j, min, temp;
+
+    for (i = 0; i < 5; i++)
+    {
+        min = i;
+
+        for (j = i + 1; j < 5; j++)
+        {
+            if (a[j] < a[i])
+            {
+                min = j;
+            }
+
+            temp = a[i];
+            a[i] = a[min];
+            a[min] = temp;
+        }
+    }
+
+    printf("Elements of array: \n");
+    for (i = 0; i < 5; i++)
+    {
+        printf("%d ", a[i]);
+    }
+
+    return 0;
+}
+
+int InsertingSort()
+{
+    int a[5] = {12, 11, 13, 5, 6};
+    int i, key, j;
+
+    for (i = 1; i < 5; i++)
+    {
+        key = a[i];
+        j = i - 1;
+
+        while (j >= 0 && a[j] > key)
+        {
+            a[j + 1] = a[j];
+            j--;
+        }
+
+        a[j + 1] = key;
+    }
+
+    for (i = 0; i < 5; i++)
+        printf("%d ", a[i]);
+
+    return 0;
+}
+
+int partition(int a[], int low, int high)
+{
+    int pivot = a[high];
+    int i = low - 1;
+    int temp;
+
+    for (int j = low; j < high; j++)
+    {
+        if (a[j] < pivot)
+        {
+            i++;
+        }
+    }
+
+    temp = a[i];
+    a[i + 1] = a[high];
+    a[high] = temp;
+
+    return i + 1;
+}
+
+void quickShort(int a[], int low, int high)
+{
+    if (low < high)
+    {
+        int pi = partition(a, low, high);
+        quickShort(a, low, pi - 1);
+        quickShort(a, pi + 1, high);
+    }
 }
