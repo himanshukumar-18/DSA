@@ -88,16 +88,75 @@ int SecondLargest();
 // swap first and last el in array
 int SwapFirstLast();
 
+int checkAssendingOrder();
+
+int merg2Array();
+
 // main function
 int main()
 {
     // calling function
-    SwapFirstLast();
+    merg2Array();
 
     return 0;
 }
 
 // -- Solution of all questions -- //
+
+int merg2Array()
+{
+    int arr1[] = { 1, 2, 3, 4, 5 };
+    int  arr2[] = { 6, 7, 8, 9, 10 };
+
+    int size1 = sizeof(arr1) / sizeof(int);
+    int size2 = sizeof(arr2) / sizeof(int);
+
+    int totalSize = size1 + size2;
+
+    int merg[totalSize];
+
+    int i;
+
+    // Copy elements from arr1 to merg
+    for(i = 0; i < size1; i++)
+    {
+        merg[i] = arr1[i];
+    }
+
+    // Copy elements from arr2 to merg (starting at index size1)
+    for(i = 0; i < size2; i++)
+    {
+        merg[size1 + i] = arr2[i];
+    }
+    
+    // Print merged array
+    printf("Merged array: ");
+    for(i = 0; i < totalSize; i++)
+    {
+        printf("%d ", merg[i]);
+    }
+    printf("\n");
+    
+    return 0;
+}
+
+int checkAssendingOrder()
+{
+    int arr[] = {10, 2, 3, 4, 5};
+    int size = sizeof(arr) / sizeof(int);
+
+    for (int i = 0; i < size - 1; i++)
+    {
+        if (arr[i] > arr[i + 1])
+        {
+            printf("Array is not in ascending order.\n");
+            return 0;
+        }
+    }
+
+    printf("Array is in ascending order.\n");
+    return 1;
+}
 
 int SwapFirstLast()
 {
