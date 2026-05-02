@@ -88,20 +88,138 @@ int SecondLargest();
 // swap first and last el in array
 int SwapFirstLast();
 
+// check asnd or not
 int checkAssendingOrder();
 
+// merg to array
 int merg2Array();
+
+// insert and delete el in array
+int insertAndDel();
+
+// binary search ex - target = 10
+int BinarySearch();
 
 // main function
 int main()
 {
     // calling function
-    merg2Array();
+    BinarySearch();
 
     return 0;
 }
 
 // -- Solution of all questions -- //
+
+int BinarySearch()
+{
+    // create arr
+    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+    // size
+    int size = sizeof(arr) / sizeof(int);
+
+    // target
+    int target = 9;
+
+    // set starting indx and ending edx
+    int start = 0;
+    int end = size - 1;
+
+    // binary search algorithm
+    while (start <= end)
+    {
+        // calculate mid point correctly
+        int mid = start + (end - start) / 2;
+
+        if(arr[mid] == target)
+        {
+            printf("Target found at index: %d", mid);
+            return mid;
+        }
+        else if(arr[mid] < target)
+        {
+            start = mid + 1;
+        }
+        else
+        {
+            end = mid - 1;
+        }
+    }
+
+    // target not found
+    printf("Target not found!");
+    return -1;
+}
+
+int insertAndDel()
+{
+    int arr[20] = {1, 2, 4, 5, 6, 7, 8};
+    int size = 7;
+    int capacity = 20;
+
+    int i;
+
+    printf("Before insert: \n");
+    for(i = 0; i < size; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+
+    printf("\n");
+
+    int value, position;
+    printf("Enter element value you want to insert: ");
+    scanf("%d", &value);
+
+    printf("Enter postion: ");
+    scanf("%d", &position);
+
+    // Shift elements from the end backwards to make space
+    for(i = size - 1; i >= position; i--)
+    {
+        arr[i + 1] = arr[i];
+    }
+
+    arr[position] = value;
+    size++;
+
+    printf("After inserting:\n");
+    for(i = 0; i < size; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+
+    printf("\n");
+
+    // Delete element from array
+    int delPosition;
+    printf("\nEnter position you want to delete: ");
+    scanf("%d", &delPosition);
+
+    // Check if position is valid
+    if(delPosition < 0 || delPosition >= size)
+    {
+        printf("Invalid position!\n");
+        return 0;
+    }
+
+    // Shift elements to the left to fill the gap
+    for(i = delPosition; i < size - 1; i++)
+    {
+        arr[i] = arr[i + 1];
+    }
+
+    size--;
+
+    printf("After deleting:\n");
+    for(i = 0; i < size; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
 
 int merg2Array()
 {

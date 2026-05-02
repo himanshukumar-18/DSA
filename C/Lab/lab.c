@@ -14,10 +14,68 @@ int InsertArr();
 // to delete given n number index in array
 int DeleteEl();
 
+// majority elements
+
+int majorityElements(int arr[], int n)
+{
+    int freq = 0, ans = 0, i;
+
+    for (i = 0; i < n; i++)
+    {
+        if (freq == 0)
+            ans = arr[i];
+
+        if (ans == arr[i])
+            freq++;
+        else
+            freq--;
+    }
+
+    return ans;
+}
+
+// repeted and missing number
+int findMissingRepeated(int arr[], int n)
+{
+    int freq[n + 1];
+    int i;
+
+    // Initialize frequency array
+    for (i = 0; i <= n; i++)
+    {
+        freq[i] = 0;
+    }
+
+    // Count frequency
+    for (i = 0; i < n; i++)
+    {
+        freq[arr[i]]++;
+    }
+
+    int missing = -1, repeated = -1;
+
+    // Find missing and repeated numbers
+    for (i = 1; i <= n; i++)
+    {
+        if (freq[i] == 0)
+            missing = i;
+
+        if (freq[i] > 1)
+            repeated = i;
+    }
+
+    printf("Repeated number = %d\n", repeated);
+    printf("Missing number = %d\n", missing);
+
+    return 0;
+}
+
 int main()
 {
-    // call here
-    DeleteEl();
+    int arr[] = {1, 2, 3, 3, 5};
+    int n = 5;
+
+    findMissingRepeated(arr, n);
 
     return 0;
 }
@@ -59,11 +117,11 @@ int TransposeMatrix()
     int transpose[3][3];
     int i, j;
 
-    //before
+    // before
     printf("Before Transpose: \n");
-    for(i = 0; i < 3; i++)
+    for (i = 0; i < 3; i++)
     {
-        for(j = 0; j < 3; j++)
+        for (j = 0; j < 3; j++)
         {
             printf("%d ", matrix[i][j]);
         }
@@ -71,9 +129,9 @@ int TransposeMatrix()
     }
 
     // transpose
-    for(i = 0; i < 3; i++) 
+    for (i = 0; i < 3; i++)
     {
-        for(j = 0; j < 3; j++)
+        for (j = 0; j < 3; j++)
         {
             transpose[j][i] = matrix[i][j];
         }
@@ -81,9 +139,9 @@ int TransposeMatrix()
     }
 
     printf("After Transpose: \n");
-    for(i = 0; i < 3; i++)
+    for (i = 0; i < 3; i++)
     {
-        for(j = 0; j < 3; j++)
+        for (j = 0; j < 3; j++)
         {
             printf("%d ", transpose[i][j]);
         }
@@ -98,8 +156,8 @@ int InsertArr()
     int arr[6], size = 5, i, pos, num; // use arr[6] to allow one extra element after insertion
 
     printf("Enter array elements: \n");
-    for(i = 0; i < size; i++)
-    {   
+    for (i = 0; i < size; i++)
+    {
         printf("El[%d]: ", i + 1);
         scanf("%d", &arr[i]);
     }
@@ -110,13 +168,14 @@ int InsertArr()
     printf("Enter the number to insert: ");
     scanf("%d", &num);
 
-    if (pos < 1 || pos > size + 1) {
+    if (pos < 1 || pos > size + 1)
+    {
         printf("Invalid position. Must be between 1 and %d\n", size + 1);
         return 0;
     }
 
     // shift el
-    for(i = size; i >= pos; i--)
+    for (i = size; i >= pos; i--)
     {
         arr[i] = arr[i - 1];
     }
@@ -126,7 +185,7 @@ int InsertArr()
     size++;
 
     printf("After inserting array: \n");
-    for(i = 0; i < size; i++)
+    for (i = 0; i < size; i++)
     {
         printf("%d ", arr[i]);
     }
@@ -140,7 +199,8 @@ int DeleteEl()
     size = sizeof(arr) / sizeof(int);
 
     printf("Enter array elements: \n");
-    for(int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++)
+    {
         printf("el %d = ", i + 1);
         scanf("%d", &arr[i]);
     }
@@ -148,7 +208,7 @@ int DeleteEl()
     printf("Enter position to delete: ");
     scanf("%d", &pos);
 
-    for(int i = pos; i < size - 1; i++)
+    for (int i = pos; i < size - 1; i++)
     {
         arr[i] = arr[i + 1];
     }
@@ -156,22 +216,10 @@ int DeleteEl()
     size--;
 
     printf("After deleting arry el: \n");
-    for(int i = 0; i < size; i++)
+    for (int i = 0; i < size; i++)
     {
         printf("%d ", arr[i]);
     }
 
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
